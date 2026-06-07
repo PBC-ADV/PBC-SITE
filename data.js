@@ -4,10 +4,10 @@ window.PBC_ASSETS = {
   heroVideo: 'https://res.cloudinary.com/dcx5wpggp/video/upload/v1773350875/PBC-SITE-4_k0nxxr.mp4',
   heroPoster: 'https://i.postimg.cc/GhH8QqBG/PBC-W-BG-3-2-1.png',
   office: [
-    { url: 'https://i.postimg.cc/zBvsS7JH/IMG_20250914_WA0005.jpg', pos: '50% 20%' },
-    { url: 'https://i.postimg.cc/Jzm43fSt/IMG_20250914_WA0007.jpg', pos: '50% 30%' },
-    { url: 'https://i.postimg.cc/3x7JjszN/IMG_20250914_WA0004.jpg', pos: '50% 50%' },
-    { url: 'https://i.postimg.cc/CMXg73BX/Whats_App_Image_2026_02_15_at_15_51_19.jpg', pos: '50% 50%' }
+    { url: 'https://i.postimg.cc/RhBp8dzf/Whats-App-Image-2026-06-06-at-20-35-35.jpg', pos: '50% 50%' },
+    { url: 'https://i.postimg.cc/Bb07ypGL/Whats-App-Image-2026-06-06-at-20-31-48.jpg', pos: '50% 50%' },
+    { url: 'https://i.postimg.cc/qqTDYwd2/Whats-App-Image-2026-06-06-at-20-31-30.jpg', pos: '50% 50%' },
+    { url: 'https://i.postimg.cc/WzvYK8PZ/Whats-App-Image-2026-06-06-at-20-30-05.jpg', pos: '50% 50%' }
   ]
 };
 
