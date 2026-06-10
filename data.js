@@ -1,7 +1,7 @@
 /* PBC — assets & team meta (names/bios come from i18n) */
 window.PBC_ASSETS = {
   logo: 'https://i.postimg.cc/NfD7TQrP/logo_pbc.png',
-  heroVideo: 'https://res.cloudinary.com/dcx5wpggp/video/upload/v1773350875/PBC-SITE-4_k0nxxr.mp4',
+  heroVideo: 'https://res.cloudinary.com/dcx5wpggp/video/upload/q_auto,vc_h264,c_limit,w_1920,ac_none/v1781052431/PBC_SITE_8_1_wxjhjv.mp4',
   heroPoster: 'https://i.postimg.cc/GhH8QqBG/PBC-W-BG-3-2-1.png',
   office: [
     { url: 'https://i.postimg.cc/RhBp8dzf/Whats-App-Image-2026-06-06-at-20-35-35.jpg', pos: '50% 50%' },
