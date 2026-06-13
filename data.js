@@ -66,7 +66,7 @@ window.PBC_ARTICLES = [
     title: 'O fim da cumulação de multas no CARF: o que mudou com o Tema 487 do STF',
     excerpt: 'A 1ª Turma da CSRF reverteu o entendimento que admitia dupla penalidade sobre estimativas e ajuste anual do IRPJ e da CSLL. Entenda o alcance da decisão e o que ela significa para contribuintes com autuações em aberto.',
     coverUrl: 'https://i.postimg.cc/zXbMNSqr/og-tema-487.png',
-    author: 'guilherme-carneiro',
+    author: 'marina-madruga',
     date: '2026-05-31',
     content: `Por anos, a Receita Federal lavrou autos de infração cumulando duas penalidades distintas sobre o mesmo contribuinte e o mesmo período de apuração: a multa isolada, incidente sobre o recolhimento a menor das estimativas mensais de IRPJ e CSLL ao longo do ano-calendário, e a multa de ofício, aplicada sobre o saldo apurado no ajuste anual. Do ponto de vista fazendário, tratava-se de infrações distintas — uma pelo não recolhimento mensal, outra pela omissão no fechamento do período. Do ponto de vista do contribuinte, significava pagar duas vezes por condutas que derivavam do mesmo fato gerador e do mesmo resultado econômico.
 
