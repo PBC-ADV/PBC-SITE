@@ -32,12 +32,12 @@
   };
   // Article-page labels (não existiam no i18n original)
   const ART = {
-    pt:{back:'Voltar aos artigos', by:'Por', notFound:'Artigo não encontrado.'},
-    en:{back:'Back to articles', by:'By', notFound:'Article not found.'},
-    fr:{back:'Retour aux articles', by:'Par', notFound:'Article introuvable.'},
-    es:{back:'Volver a los artículos', by:'Por', notFound:'Artículo no encontrado.'},
-    de:{back:'Zurück zu den Artikeln', by:'Von', notFound:'Artikel nicht gefunden.'},
-    it:{back:'Torna agli articoli', by:'Di', notFound:'Articolo non trovato.'}
+    pt:{back:'Voltar aos artigos', by:'Por', writtenBy:'Escrito por', notFound:'Artigo não encontrado.'},
+    en:{back:'Back to articles', by:'By', writtenBy:'Written by', notFound:'Article not found.'},
+    fr:{back:'Retour aux articles', by:'Par', writtenBy:'Écrit par', notFound:'Article introuvable.'},
+    es:{back:'Volver a los artículos', by:'Por', writtenBy:'Escrito por', notFound:'Artículo no encontrado.'},
+    de:{back:'Zurück zu den Artikeln', by:'Von', writtenBy:'Geschrieben von', notFound:'Artikel nicht gefunden.'},
+    it:{back:'Torna agli articoli', by:'Di', writtenBy:'Scritto da', notFound:'Articolo non trovato.'}
   };
   // graft extras into the dicts so the generic [data-i18n] pass can pick them up
   LANGS.forEach(l=>{
@@ -56,6 +56,7 @@
     d.contact.form_error = EXTRA[l].form.error;
     d.insights.back = ART[l].back;
     d.insights.by = ART[l].by;
+    d.insights.written_by = ART[l].writtenBy;
     d.insights.not_found = ART[l].notFound;
   });
 
@@ -171,6 +172,7 @@
   const articles = () => Array.isArray(window.PBC_ARTICLES) ? window.PBC_ARTICLES : [];
   const findArticle = slug => articles().find(a => a && a.slug === slug);
   const cover = a => a.coverUrl || a.imageUrl || '';
+  const teamMember = key => (Array.isArray(window.PBC_TEAM) ? window.PBC_TEAM : []).find(m => m && m.key === key) || null;
 
   // escape user/author content before injecting as HTML
   function esc(s){
@@ -219,10 +221,21 @@
         const href = internal ? '#artigo/'+encodeURIComponent(a.slug) : (a.url||'#');
         const tgt = internal ? '' : ' target="_blank" rel="noopener"';
         const img = cover(a);
+        const am = a.author ? teamMember(a.author) : null;
+        const amDate = a.date ? esc(fmtDate(a.date)) : '';
+        const authorHTML = am ? '<span class="art-author">'+
+          (am.img?'<img class="aa-photo" loading="lazy" src="'+esc(am.img)+'" alt="">':'')+
+          '<span class="aa-info">'+
+            '<span class="aa-by">'+t('insights.written_by')+'</span>'+
+            '<span class="aa-name">'+esc(am.name)+'</span>'+
+            (amDate?'<span class="aa-date">'+amDate+'</span>':'')+
+          '</span>'+
+        '</span>' : '';
         return '<a class="art" href="'+href+'"'+tgt+'>'+
           '<div class="im">'+(img?'<img loading="lazy" src="'+esc(img)+'" alt="">':'')+'</div>'+
           '<div class="bd"><h4>'+esc(a.title)+'</h4>'+
           (a.excerpt?'<p class="pa-desc" style="margin-top:.6rem">'+esc(a.excerpt)+'</p>':'')+
+          authorHTML+
           '<span class="more">'+t('insights.read_more')+' <span class="arr">→</span></span></div>'+
         '</a>';
       }).join('')+'</div>';
@@ -240,14 +253,30 @@
         '<a class="post-back" href="#insights">← '+t('insights.back')+'</a></div>';
       return;
     }
-    const meta = [];
-    if(a.date) meta.push(esc(fmtDate(a.date)));
-    if(a.author) meta.push(t('insights.by')+' '+esc(a.author));
     const img = cover(a);
+    const dateStr = a.date ? esc(fmtDate(a.date)) : '';
+    const member = a.author ? teamMember(a.author) : null;
+    let bylineHTML = '';
+    if(member){
+      const sub = dateStr;
+      bylineHTML = '<div class="post-byline">'+
+        (member.img?'<a class="pb-photo-link" href="#equipe" aria-label="'+esc(member.name)+'"><img class="pb-photo" loading="lazy" src="'+esc(member.img)+'" alt=""></a>':'')+
+        '<div class="pb-info">'+
+          '<span class="pb-by">'+t('insights.written_by')+'</span>'+
+          '<a class="pb-name" href="#equipe">'+esc(member.name)+'</a>'+
+          (sub?'<span class="pb-role">'+sub+'</span>':'')+
+        '</div>'+
+      '</div>';
+    } else {
+      const meta = [];
+      if(dateStr) meta.push(dateStr);
+      if(a.author) meta.push(t('insights.by')+' '+esc(a.author));
+      if(meta.length) bylineHTML = '<p class="post-meta">'+meta.join('  ·  ')+'</p>';
+    }
     view.innerHTML = '<div class="post">'+
       '<span class="eyebrow">'+t('insights.kicker')+'</span>'+
       '<h1 class="post-title">'+esc(a.title)+'</h1>'+
-      (meta.length?'<p class="post-meta">'+meta.join('  ·  ')+'</p>':'')+
+      bylineHTML+
       (a.excerpt?'<p class="post-excerpt">'+esc(a.excerpt)+'</p>':'')+
       (img?'<div class="post-cover"><img src="'+esc(img)+'" alt=""></div>':'')+
       '<div class="post-body" lang="pt">'+renderContent(a.content)+'</div>'+

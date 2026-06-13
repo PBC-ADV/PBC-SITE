@@ -12,16 +12,18 @@ window.PBC_ASSETS = {
 };
 
 // role keys map to i18n team.roles.*
+// 'key'  identifica o membro para a AUTORIA de artigos (campo "author" em PBC_ARTICLES).
+// 'name' aparece na assinatura do artigo (byline) e no card, junto da foto deste membro.
 window.PBC_TEAM = [
-  { img: 'https://i.postimg.cc/9Qh9KNw3/457A1884.jpg', role: 'founder' },
-  { img: 'https://i.postimg.cc/28vvHfyC/457A1705.jpg', role: 'founder' },
-  { img: 'https://i.postimg.cc/tCPPrHJq/Gemini_Generated_Image_yx4v6dyx4v6dyx4v.png', role: 'founder' },
-  { img: 'https://i.postimg.cc/yY99fzdw/457A2300.jpg', role: 'associate' },
-  { img: 'https://i.postimg.cc/bNbb6jrz/457A2140.jpg', role: 'associate' },
-  { img: 'https://i.postimg.cc/qMnnmdRF/457A2098.jpg', role: 'associate' },
-  { img: 'https://i.postimg.cc/1566WZtj/457A2200.jpg', role: 'intern' },
-  { img: 'https://i.postimg.cc/MKRRs8Hx/457A2405.jpg', role: 'intern' },
-  { img: 'https://i.postimg.cc/sDSSnRX8/457A2238.jpg', role: 'intern' }
+  { key: 'fernando-pessoa',    name: 'Fernando Pessoa',          img: 'https://i.postimg.cc/9Qh9KNw3/457A1884.jpg', role: 'founder' },
+  { key: 'lucas-braz',         name: 'Lucas Braz',               img: 'https://i.postimg.cc/28vvHfyC/457A1705.jpg', role: 'founder' },
+  { key: 'guilherme-carneiro', name: 'Guilherme Carneiro',       img: 'https://i.postimg.cc/tCPPrHJq/Gemini_Generated_Image_yx4v6dyx4v6dyx4v.png', role: 'founder' },
+  { key: 'marina-madruga',     name: 'Marina Madruga',           img: 'https://i.postimg.cc/yY99fzdw/457A2300.jpg', role: 'associate' },
+  { key: 'pedro-costa',        name: 'Pedro Costa',              img: 'https://i.postimg.cc/bNbb6jrz/457A2140.jpg', role: 'associate' },
+  { key: 'luciano-oliveira',   name: 'Luciano Oliveira',         img: 'https://i.postimg.cc/qMnnmdRF/457A2098.jpg', role: 'associate' },
+  { key: 'felipe-madruga',     name: 'Felipe Madruga',           img: 'https://i.postimg.cc/1566WZtj/457A2200.jpg', role: 'intern' },
+  { key: 'maria-antonia',      name: 'Maria Antônia Cavalcanti', img: 'https://i.postimg.cc/MKRRs8Hx/457A2405.jpg', role: 'intern' },
+  { key: 'joao-pedro',         name: 'João Pedro Moreira',       img: 'https://i.postimg.cc/sDSSnRX8/457A2238.jpg', role: 'intern' }
 ];
 
 window.PBC_ROLE_ORDER = ['founder', 'associate', 'intern'];
@@ -42,7 +44,9 @@ window.PBC_ROLE_ORDER = ['founder', 'associate', 'intern'];
  *   content   (obrigatório) Texto do artigo. Veja a formatação abaixo.
  *   excerpt   (opcional) Resumo de 1–2 linhas. Aparece no card e no topo do artigo.
  *   coverUrl  (opcional) Imagem de capa (card + topo do artigo).
- *   author    (opcional) Quem escreveu. Ex.: 'Guilherme Carneiro'.
+ *   author    (opcional) Autoria do artigo. Use a 'key' de um membro de PBC_TEAM
+ *             (ex.: 'guilherme-carneiro') — exibe a FOTO + nome + cargo do autor.
+ *             Um texto livre que não case com nenhuma key vira apenas "Por <texto>".
  *   date      (opcional) Data no formato 'AAAA-MM-DD'. Ex.: '2026-05-31'.
  *             É exibida por extenso e traduzida conforme o idioma do site.
  *
@@ -62,6 +66,7 @@ window.PBC_ARTICLES = [
     title: 'O fim da cumulação de multas no CARF: o que mudou com o Tema 487 do STF',
     excerpt: 'A 1ª Turma da CSRF reverteu o entendimento que admitia dupla penalidade sobre estimativas e ajuste anual do IRPJ e da CSLL. Entenda o alcance da decisão e o que ela significa para contribuintes com autuações em aberto.',
     coverUrl: 'https://i.postimg.cc/zXbMNSqr/og-tema-487.png',
+    author: 'guilherme-carneiro',
     date: '2026-05-31',
     content: `Por anos, a Receita Federal lavrou autos de infração cumulando duas penalidades distintas sobre o mesmo contribuinte e o mesmo período de apuração: a multa isolada, incidente sobre o recolhimento a menor das estimativas mensais de IRPJ e CSLL ao longo do ano-calendário, e a multa de ofício, aplicada sobre o saldo apurado no ajuste anual. Do ponto de vista fazendário, tratava-se de infrações distintas — uma pelo não recolhimento mensal, outra pela omissão no fechamento do período. Do ponto de vista do contribuinte, significava pagar duas vezes por condutas que derivavam do mesmo fato gerador e do mesmo resultado econômico.
 
