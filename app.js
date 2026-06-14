@@ -157,7 +157,7 @@
         '<div class="team-grid">'+
         items.map(({m,i})=>{
           const mem = members[i] || {name:'',bio:''};
-          return '<div class="member">'+
+          return '<div class="member" id="membro-'+m.key+'">'+
             '<div class="ph"><img loading="lazy" src="'+m.img+'" alt=""></div>'+
             '<div class="nm">'+mem.name+'</div>'+
             '<p class="bio">'+mem.bio+'</p>'+
@@ -259,11 +259,12 @@
     let bylineHTML = '';
     if(member){
       const sub = dateStr;
+      const memberAnchor = member.key ? '#membro-'+member.key : '#equipe';
       bylineHTML = '<div class="post-byline">'+
-        (member.img?'<a class="pb-photo-link" href="#equipe" aria-label="'+esc(member.name)+'"><img class="pb-photo" loading="lazy" src="'+esc(member.img)+'" alt=""></a>':'')+
+        (member.img?'<a class="pb-photo-link" href="'+memberAnchor+'" aria-label="'+esc(member.name)+'"><img class="pb-photo" loading="lazy" src="'+esc(member.img)+'" alt=""></a>':'')+
         '<div class="pb-info">'+
           '<span class="pb-by">'+t('insights.written_by')+'</span>'+
-          '<a class="pb-name" href="#equipe">'+esc(member.name)+'</a>'+
+          '<a class="pb-name" href="'+memberAnchor+'">'+esc(member.name)+'</a>'+
           (sub?'<span class="pb-role">'+sub+'</span>':'')+
         '</div>'+
       '</div>';
